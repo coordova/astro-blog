@@ -2,6 +2,9 @@
   "name": "astro-blog-tutorial",
   "type": "module",
   "version": "0.0.1",
+  "browserslist": [
+    "defaults"
+  ],
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -10,6 +13,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^2.8.1"
+    "astro": "^2.8.1",
+    "postcss": "^8.4.25",
+    "postcss-preset-env": "^9.0.0"
   }
 }
