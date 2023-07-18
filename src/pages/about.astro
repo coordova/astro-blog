@@ -1,7 +1,15 @@
 ---
-import MainLayout from "../layout/MainLayout.astro";
+import Link from "../components/Link.astro";
+import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<MainLayout >
-    <p>Hi from about</p>
+<MainLayout title="About" description="My About Page">
+    <section class="container about" aria-label="About Me">
+        <img src="/images/headshot.jpg" alt="My Headshot" width="200" height="330">
+        <div class="content">
+            <h1 class="h1">My Blog</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis dolorem distinctio autem repudiandae veritatis nam, at neque delectus voluptate labore perferendis ratione officiis adipisci aut culpa provident, voluptatem, corrupti nesciunt. Quis odit delectus id laboriosam sequi placeat dolores quia voluptatum.</p>
+            <Link href="mailto:gonzalo@coordova.com" text="Contact Me" style="primary" />
+        </div>
+    </section>
 </MainLayout>
