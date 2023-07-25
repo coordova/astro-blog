@@ -3,6 +3,7 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import PostCard from "../../components/PostCard.astro";
 import Pagination from "../../components/pagination.astro";
+import CategoryCloud from "../../components/CategoryCloud.astro";
 
 // utils imports
 import { formatBlogPosts } from "../../js/utils"
@@ -19,7 +20,7 @@ export async function getStaticPaths({ paginate }) {
 	} */);
 	
 	return paginate(formattedPosts, {
-		pageSize: 1,
+		pageSize: 3,
 	})
 }
 
@@ -49,4 +50,8 @@ console.log(page);
 		</div>
 		<Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
 	</section>
+	<aside class="container" aria-label="Blog Categories">
+		<h2 class="h3">Blog Categories</h2>
+		<CategoryCloud showCount={true}/>
+	</aside>
 </MainLayout>
