@@ -3,12 +3,38 @@
 import CategoryCloud from "../components/CategoryCloud.astro";
 import PostHeader from "../components/PostHeader.astro";
 import MainLayout from "./MainLayout.astro";
+import RelatedPosts from "../components/RelatedPosts.astro";
+
+// utils import
+import { formatBlogPosts } from "../js/utils";
 
 const { frontmatter } = Astro.props;
 // console.log(frontmatter);
-
 // destructuring
 const { title, description, date, category, author, image, alt } = frontmatter;
+
+const allPosts = await Astro.glob("../pages/blog/*.md");
+const formattedPosts = formatBlogPosts(allPosts, {
+	// limit: 3
+	sortByDate: false
+}/* , {
+	filterOutDrafts: false,
+	filterOutFuturePosts: true,
+	sortByDate: true,
+	limit: 1
+} */);
+
+const relatedPosts = formattedPosts
+	.filter(
+		(post) => 
+			post.frontmatter.category.toLowerCase() === category.toLowerCase() && 
+			post.frontmatter.title !== title
+	)
+	.slice(0, 3);
+
+// console.log(formattedPosts);
+
+
 ---
 
 <MainLayout {title} {description}>
@@ -22,6 +48,14 @@ const { title, description, date, category, author, image, alt } = frontmatter;
 				<h2 class="h3">Blog Categories</h2>
 				<CategoryCloud />
 			</aside>
+			{
+				relatedPosts.length > 0 && (
+					<aside class="container" aria-label="Related Posts">
+						<h2 class="h3">Related Posts</h2>
+						<RelatedPosts {relatedPosts} />
+					</aside>
+				)
+			}
 		</div>
 	</div>
 </MainLayout>

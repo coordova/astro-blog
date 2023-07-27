@@ -14,6 +14,8 @@ const processedCats = allCategories.reduce((acc, category) => {
     // check if the category exists in the acc
     const value = acc[category] || 0;
 
+    // console.log(acc);
+
     return {
         ...acc,
         [category]: value + 1
